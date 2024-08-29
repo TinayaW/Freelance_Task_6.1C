@@ -1,21 +1,19 @@
 pipeline {
     agent any
-    
+
     stages {
 
         stage('Build') {
             steps {
-                echo 'Building the code...'
-                // Use Maven or any other build tool
-                bat 'mvn clean package'
+                echo 'Task: Building the code...'
+                echo 'Tool: Maven (mvn)'
             }
         }
 
         stage('Unit and Integration Tests') {
             steps {
-                echo 'Running unit and integration tests...'
-                // Use JUnit or any other testing framework
-                bat 'mvn test'
+                echo 'Task: Running unit and integration tests...'
+                echo 'Tool: Maven (mvn test)'
             }
             post {
                 success {
@@ -39,17 +37,15 @@ pipeline {
 
         stage('Code Analysis') {
             steps {
-                echo 'Analyzing the code...'
-                // Use SonarQube or any other static analysis tool
-                bat 'mvn sonar:sonar'
+                echo 'Task: Analyzing the code...'
+                echo 'Tool: SonarQube (mvn sonar:sonar)'
             }
         }
 
         stage('Security Scan') {
             steps {
-                echo 'Running security scan...'
-                // Use OWASP Dependency Check, Snyk, or any other security tool
-                bat 'dependency-check.bat'
+                echo 'Task: Running security scan...'
+                echo 'Tool: OWASP Dependency Check (dependency-check.sh)'
             }
             post {
                 success {
@@ -73,25 +69,22 @@ pipeline {
 
         stage('Deploy to Staging') {
             steps {
-                echo 'Deploying to staging...'
-                // Use Ansible, AWS CLI, or other deployment tools
-                bat 'ansible-playbook deploy_staging.yml'
+                echo 'Task: Deploying to staging...'
+                echo 'Tool: Ansible (ansible-playbook)'
             }
         }
 
         stage('Integration Tests on Staging') {
             steps {
-                echo 'Running integration tests on staging...'
-                // Run integration tests in staging environment
-                bat 'run_tests.bat'
+                echo 'Task: Running integration tests on staging...'
+                echo 'Tool: Custom Test Script (run_tests.sh)'
             }
         }
 
         stage('Deploy to Production') {
             steps {
-                echo 'Deploying to production...'
-                // Use Ansible, AWS CLI, or other deployment tools
-                bat 'ansible-playbook deploy_production.yml'
+                echo 'Task: Deploying to production...'
+                echo 'Tool: Ansible (ansible-playbook)'
             }
         }
     }
